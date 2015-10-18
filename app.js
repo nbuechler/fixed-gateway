@@ -29,12 +29,18 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var interceptorController = require('./controllers/interceptor');
 
 /**
  * API keys and Passport configuration.
  */
 var secrets = require('./config/secrets');
 var passportConf = require('./config/passport');
+
+/**
+ * Create cors support.
+ */
+var cors = require('cors')
 
 /**
  * Create Express server.
@@ -116,6 +122,13 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+
+/**
+ * Interceptor routes.
+ */
+
+app.get('/foo01', cors(), interceptorController.foo01); //'This is CORS-enabled for all origins!'
+
 
 /**
  * API examples routes.
