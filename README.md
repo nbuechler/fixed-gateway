@@ -1,5 +1,5 @@
 # fixed-gateway
-a gatway for all the front-end apps
+a gateway for all the front-end apps
 
 
 
