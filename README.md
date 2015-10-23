@@ -2,6 +2,21 @@
 a gateway for all the front-end apps
 
 
+##For node 4.0+
+
+#I had to create the directory for the node-sass binding
+
+1. fixed-gateway/node_modules/node-sass-middleware/node_modules/node-sass/vendor
+2. Add this file, this one is for node 4.0.0.... https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-46_binding.node
+
+#See these references:
+https://github.com/sass/node-sass/issues/1162
+
+https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-14_binding.node
+^^ This one is for node 0.12
+https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-46_binding.node
+^^ This one is for node 4.0.0
+
 
 
 ##CREDITS BELOW
