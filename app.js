@@ -114,7 +114,8 @@ app.get('/reset/:token', userController.getReset);
 app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
-app.post('/postRemoteSignup', userController.postRemoteSignup);
+app.post('/postRemoteSignup', cors(), userController.postRemoteSignup); //'This is CORS-enabled for all origins!'
+app.post('/postRemoteLogin', cors(), userController.postRemoteLogin); //'This is CORS-enabled for all origins!'
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/account', passportConf.isAuthenticated, userController.getAccount);
