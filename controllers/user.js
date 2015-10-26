@@ -147,7 +147,7 @@ exports.postRemoteLogin = function(req, res, next) {
       if (err) return next(err);
       req.flash('success', { msg: 'Success! You are logged in.' });
       // res.redirect(req.session.returnTo || '/');
-      console.log('here---CC');
+      // console.log('here---CC');
       return res.send({ status: 'Success', msg: 'Success! You are logged in.' })
     });
   })(req, res, next);
