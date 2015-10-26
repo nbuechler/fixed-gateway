@@ -123,7 +123,6 @@ exports.postRemoteLogin = function(req, res, next) {
 
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
-  req.assert('host', 'Host cannot be blank').notEmpty();
 
   var errors = req.validationErrors();
 
