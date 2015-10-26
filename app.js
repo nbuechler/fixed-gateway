@@ -115,6 +115,7 @@ app.post('/reset/:token', userController.postReset);
 app.get('/signup', userController.getSignup);
 app.post('/signup', userController.postSignup);
 app.post('/postRemoteSignup', userController.postRemoteSignup);
+app.post('/postRemoteLogin', userController.postRemoteLogin);
 app.get('/contact', contactController.getContact);
 app.post('/contact', contactController.postContact);
 app.get('/account', passportConf.isAuthenticated, userController.getAccount);
