@@ -132,7 +132,7 @@ exports.postRemoteLogin = function(req, res, next) {
     req.flash('errors', errors);
     // return res.redirect('/login');
     // console.log('here---AA');
-    return res.send({ status: 'Failure', errors: errors })
+    return res.send({ customCode: 4031, status: 'Failure', errors: errors })
   }
 
   passport.authenticate('local', function(err, user, info) {
@@ -141,14 +141,14 @@ exports.postRemoteLogin = function(req, res, next) {
       req.flash('errors', { msg: info.message });
       // return res.redirect('/login');
       // console.log('here---BB');
-      return res.send({ status: 'Failure', msg: info.message })
+      return res.send({ customCode: 4032, status: 'Failure', msg: info.message })
     }
     req.logIn(user, function(err) {
       if (err) return next(err);
       req.flash('success', { msg: 'Success! You are logged in.' });
       // res.redirect(req.session.returnTo || '/');
       // console.log('here---CC');
-      return res.send({ status: 'Success', msg: 'Success! You are logged in.' })
+      return res.send({ customCode: 2001, status: 'Success', msg: 'Success! You are logged in.' })
     });
   })(req, res, next);
 };
