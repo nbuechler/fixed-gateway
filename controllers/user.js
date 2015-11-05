@@ -119,9 +119,31 @@ exports.postRemoteSignup = function(req, res, next) {
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
 
-  // TODO: Get the passport thing working here for remote
+  var errors = req.validationErrors();
 
-        res.send('/happpppp');
+  if (errors) {
+    req.flash('errors', errors);
+    return res.send({ customCode: 4031, status: 'Failure', errors: errors })
+  }
+
+  var user = new User({
+    email: req.body.email,
+    password: req.body.password
+  });
+
+  User.findOne({ email: req.body.email }, function(err, existingUser) {
+    if (existingUser) {
+      req.flash('errors', { msg: 'Account with that email address already exists.' });
+      return res.send({ customCode: 4032, status: 'Failure', msg: 'Account with that email address already exists.' })
+    }
+    user.save(function(err) {
+      if (err) return next(err);
+      req.logIn(user, function(err) {
+        if (err) return next(err);
+        return res.send({ customCode: 2001, status: 'Success', msg: 'Success! You have a new account, and you logged in.' })
+      });
+    });
+  });
 };
 
 /**
@@ -134,8 +156,6 @@ exports.postRemoteLogin = function(req, res, next) {
   req.assert('password', 'Password cannot be blank').notEmpty();
 
   var errors = req.validationErrors();
-
-  console.log(req.validationErrors());
 
   if (errors) {
     req.flash('errors', errors);
