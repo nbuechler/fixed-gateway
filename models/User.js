@@ -3,6 +3,20 @@ var crypto = require('crypto');
 var mongoose = require('mongoose');
 
 var userSchema = new mongoose.Schema({
+  firstName: {
+		type: String,
+		trim: true,
+		default: '',
+	},
+	lastName: {
+		type: String,
+		trim: true,
+		default: '',
+	},
+	displayName: {
+		type: String,
+		trim: true
+	},
   email: { type: String, unique: true, lowercase: true },
   password: String,
 
@@ -22,8 +36,20 @@ var userSchema = new mongoose.Schema({
     picture: { type: String, default: '' }
   },
 
-  resetPasswordToken: String,
-  resetPasswordExpires: Date
+  updated: {
+		type: Date
+	},
+	created: {
+		type: Date,
+		default: Date.now
+	},
+	/* For reset password */
+	resetPasswordToken: {
+		type: String
+	},
+	resetPasswordExpires: {
+		type: Date
+	}
 });
 
 /**
