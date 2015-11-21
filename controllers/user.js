@@ -103,10 +103,11 @@ exports.postSignup = function(req, res, next) {
 };
 
 /**
- * GET /logout
+ * POST /postRemoteLogout
  * Log out.
  */
 exports.postRemoteLogout = function(req, res) {
+  // req.logout();
   res.send({ customCode: 2001, status: 'Success', msg: 'Success! You are logged out.' });
 };
 
