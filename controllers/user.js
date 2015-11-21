@@ -103,10 +103,11 @@ exports.postSignup = function(req, res, next) {
 };
 
 /**
- * GET /logout
+ * POST /postRemoteLogout
  * Log out.
  */
 exports.postRemoteLogout = function(req, res) {
+  // req.logout();
   res.send({ customCode: 2001, status: 'Success', msg: 'Success! You are logged out.' });
 };
 
@@ -117,7 +118,7 @@ exports.postRemoteLogout = function(req, res) {
 exports.postRemoteSignup = function(req, res, next) {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password must be at least 4 characters long').len(4);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  req.assert('confirmPassword', 'Passwords do not match').equals(req.assert('password').value);
 
   var errors = req.validationErrors();
 
@@ -127,11 +128,13 @@ exports.postRemoteSignup = function(req, res, next) {
   }
 
   var user = new User({
-    email: req.body.email,
-    password: req.body.password
+    email: req.assert('email').value,
+    password: req.assert('password').value
   });
 
-  User.findOne({ email: req.body.email }, function(err, existingUser) {
+console.log(req.assert('email').value);
+
+  User.findOne({ email: req.assert('email').value }, function(err, existingUser) {
     if (existingUser) {
       req.flash('errors', { msg: 'Account with that email address already exists.' });
       return res.send({ customCode: 4032, status: 'Failure', msg: 'Account with that email address already exists.' })
