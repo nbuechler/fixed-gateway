@@ -107,7 +107,7 @@ exports.postSignup = function(req, res, next) {
  * Log out.
  */
 exports.postRemoteLogout = function(req, res) {
-  // req.logout();
+  req.logout();
   res.send({ customCode: 2001, status: 'Success', msg: 'Success! You are logged out.' });
 };
 
