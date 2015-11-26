@@ -27,6 +27,7 @@ var sass = require('node-sass-middleware');
  */
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
+var activityController = require('./controllers/activity');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var interceptorController = require('./controllers/interceptor');
@@ -100,6 +101,8 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
+//Use CORS-enabled to make it easier to code
+app.use(cors())
 
 /**
  * Primary app routes.
@@ -131,6 +134,26 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 
 app.get('/foo01', cors(), interceptorController.foo01); //'This is CORS-enabled for all origins!'
 app.get('/foo02', cors(), interceptorController.foo02); //'This is CORS-enabled for all origins!'
+
+/**
+ * Activity routes.
+ */
+
+app.route('/activities')
+	.get(activityController.listByLogedInUser)
+	.post(/*userController.requiresLogin,*/ activityController.create);
+
+app.route('/publicActivities')
+	.get(activityController.listPublic)
+	.post(/*userController.requiresLogin,*/ activityController.create);
+
+app.route('/activities/:activityId')
+	.get(/*userController.requiresLogin, cors(),*/ activityController.read)
+	.put(/*userController.requiresLogin, cors(),*/ activityController.update)
+	.delete(/*userController.requiresLogin, cors(),*/ activityController.delete);
+
+// Finish by binding the Activity middleware
+app.param('activityId', activityController.activityByID);
 
 
 /**
