@@ -6,6 +6,20 @@ var passport = require('passport');
 var User = require('../models/User');
 var secrets = require('../config/secrets');
 
+
+/**
+ * Require login routing middleware
+ */
+exports.requiresLogin = function(req, res, next) {
+	if (!req.isAuthenticated()) {
+		return res.status(401).send({
+			message: 'User is not logged in'
+		});
+	}
+
+	next();
+};
+
 /**
  * GET /login
  * Login page.
