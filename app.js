@@ -28,6 +28,8 @@ var sass = require('node-sass-middleware');
 var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var activityController = require('./controllers/activity');
+var experienceController = require('./controllers/experience');
+var logController = require('./controllers/log');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var interceptorController = require('./controllers/interceptor');
@@ -155,6 +157,45 @@ app.route('/activities/:activityId')
 // Finish by binding the Activity middleware
 app.param('activityId', activityController.activityByID);
 
+/**
+ * Experience routes.
+ */
+
+app.route('/experiences')
+	.get(experienceController.listByLogedInUser)
+	.post(/*users.requiresLogin,*/ experienceController.create);
+
+app.route('/publicexperiences')
+	.get(experienceController.listPublic)
+	.post(/*users.requiresLogin,*/ experienceController.create);
+
+app.route('/experiences/:experienceId')
+  .get(/*users.requiresLogin, experienceController.hasAuthorization,*/ experienceController.read)
+  .put(/*users.requiresLogin, experienceController.hasAuthorization,*/ experienceController.update)
+  .delete(/*users.requiresLogin, experienceController.hasAuthorization,*/ experienceController.delete);
+
+// Finish by binding the Experience middleware
+app.param('experienceId', experienceController.experienceByID);
+
+/**
+ * Log routes.
+ */
+
+app.route('/logs')
+	.get(logController.listByLogedInUser)
+	.post(/*users.requiresLogin,*/ logController.create);
+
+app.route('/publicLogs')
+	.get(logController.listPublic)
+	.post(/*users.requiresLogin,*/ logController.create);
+
+app.route('/logs/:logId')
+	.get(/*users.requiresLogin, logController.hasAuthorization,*/ logController.read)
+	.put(/*users.requiresLogin, logController.hasAuthorization,*/ logController.update)
+	.delete(/*users.requiresLogin, logController.hasAuthorization,*/ logController.delete);
+
+// Finish by binding the Log middleware
+app.param('logId', logController.logByID);
 
 /**
  * API examples routes.
