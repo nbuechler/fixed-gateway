@@ -22,7 +22,7 @@ exports.create = function(req, res) {
 	experience.descriptionArray = experience.description.split(' ');
 	experience.descriptionArrayLength = experience.descriptionArray.length;
 
-	experience.save(function(err) {
+	experience.save(function(err) { //TODO: This is not working right
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

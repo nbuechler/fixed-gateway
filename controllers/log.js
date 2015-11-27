@@ -50,7 +50,7 @@ exports.create = function(req, res) {
 		log.etherArrayLength = 0;
 	}
 
-	log.save(function(err) {
+	log.save(function(err) { //TODO: This is not working right
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
