@@ -160,7 +160,7 @@ exports.listPublic = function(req, res) {
 };
 
 exports.listByLogedInUser = function(req, res) {
-	Log.find({'user': req.user}).sort('-created').populate('user', 'displayName').exec(function(err, logs) {
+	Log.find({'user': req.assert('user_id').value}).sort('-created').populate('user', 'displayName').exec(function(err, logs) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -191,7 +191,7 @@ exports.logByID = function(req, res, next, id) {
 
 			 var doesExperienceUserMatch = false;
 	 			if(req.user){
-	 				doesExperienceUserMatch = log.firstExperience.user.toString() === req.user._id.toString();
+	 				doesExperienceUserMatch = log.firstExperience.user.toString() === req.assert('user_id').value;
 	 					if(log.firstExperience.privacy < 1 && !doesExperienceUserMatch) {
 	 							req.log.firstExperience = null;
 	 					} else {
@@ -203,7 +203,7 @@ exports.logByID = function(req, res, next, id) {
 	 							for (var i = 0; i < logs.length; i++) {
 	 								if(logs[i].privacy > 0){
 	 									logsList.push(logs[i]);
-	 								} else if (logs[i].user._id.toString() === req.user._id.toString()) {
+	 								} else if (logs[i].user._id.toString() === req.assert('user_id').value) {
 	 									logsList.push(logs[i]);
 	 								}
 	 								// else {

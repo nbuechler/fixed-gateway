@@ -110,7 +110,7 @@ exports.listPublic = function(req, res) {
  * List of Experiences by user
  */
 exports.listByLogedInUser = function(req, res) {
-	Experience.find({'user': req.user}).sort('-created').populate('user', 'displayName').exec(function(err, experiences) {
+	Experience.find({'user': req.assert('user_id').value}).sort('-created').populate('user', 'displayName').exec(function(err, experiences) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -141,7 +141,7 @@ exports.experienceByID = function(req, res, next, id) {
 				 });
 			 } else {
 
-				 if(req.user){
+				 if(req.assert('user_id')){
 					 /**
 						* Get only the public logs. Or all logs if the current user matches the log user.
 						*/
@@ -149,7 +149,7 @@ exports.experienceByID = function(req, res, next, id) {
 					 for (var i = 0; i < logs.length; i++) {
 						 if(logs[i].privacy > 0){
 							 logsList.push(logs[i]);
-						 } else if (logs[i].user._id.toString() === req.user._id.toString()) {
+						 } else if (logs[i].user._id.toString() === req.assert('user_id').value) {
 						 	 logsList.push(logs[i]);
 						 }
 						//  else {
@@ -172,8 +172,8 @@ exports.experienceByID = function(req, res, next, id) {
 				 			 */
 
 							var doesActivityUserMatch = false;
-							if(req.user){
-					 			doesActivityUserMatch = experience.firstActivity.user.toString() === req.user._id.toString();
+							if(req.assert('user_id')){
+					 			doesActivityUserMatch = experience.firstActivity.user.toString() === req.assert('user_id').value;
 					 				if(experience.firstActivity.privacy < 1 && !doesActivityUserMatch) {
 					 						req.experience.firstActivity = null;
 					 				} else {
@@ -185,7 +185,7 @@ exports.experienceByID = function(req, res, next, id) {
 											for (var j = 0; j < experiences.length; j++) {
 												if(experiences[j].privacy > 0){
 													experiencesList.push(experiences[j]);
-												} else if (experiences[j].user._id.toString() === req.user._id.toString()) {
+												} else if (experiences[j].user._id.toString() === req.assert('user_id').value) {
 													experiencesList.push(experiences[j]);
 												}
 												// else {
@@ -213,7 +213,7 @@ exports.experienceByID = function(req, res, next, id) {
  * Experience authorization middleware
  */
 exports.hasAuthorization = function(req, res, next) {
-	if (req.experience.user.id !== req.user.id) {
+	if (req.experience.user.id !== req.assert('user_id').id) {
 		// TODO: Add logic that creates an alert log if someone is this is true
 		if(req.experience.privacy < 1){
 			return res.status(403).send('User is not authorized');
