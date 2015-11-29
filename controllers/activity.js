@@ -114,7 +114,7 @@ exports.listPublic = function(req, res) {
  */
 exports.listByLogedInUser = function(req, res) {
 	//where activity.user === req.user
-	Activity.find({'user': req.user}).sort('-created').populate('user', 'displayName').exec(function(err, activities) {
+	Activity.find({'user': req.assert('user_id').value}).sort('-created').populate('user', 'displayName').exec(function(err, activities) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
@@ -151,7 +151,7 @@ exports.activityByID = function(req, res, next, id) {
 				for (var i = 0; i < experiences.length; i++) {
 					if(experiences[i].privacy > 0){
 						experiencesList.push(experiences[i]);
-					} else if (experiences[i].user._id.toString() === req.user._id.toString()) {
+					} else if (experiences[i].user._id.toString() === req.assert('user_id').value) {
 						experiencesList.push(experiences[i]);
 					}
 					// else {

@@ -165,7 +165,7 @@ app.route('/experiences')
 	.get(experienceController.listByLogedInUser)
 	.post(/*users.requiresLogin,*/ experienceController.create);
 
-app.route('/publicexperiences')
+app.route('/publicExperiences')
 	.get(experienceController.listPublic)
 	.post(/*users.requiresLogin,*/ experienceController.create);
 
