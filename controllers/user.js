@@ -157,7 +157,7 @@ console.log(req.assert('email').value);
       if (err) return next(err);
       req.logIn(user, function(err) {
         if (err) return next(err);
-        return res.send({ customCode: 2001, status: 'Success', msg: 'Success! You have a new account, and you logged in.' })
+        return res.send({ _id: user._id, customCode: 2001, status: 'Success', msg: 'Success! You have a new account, and you logged in.' })
       });
     });
   });
@@ -194,7 +194,7 @@ exports.postRemoteLogin = function(req, res, next) {
       req.flash('success', { msg: 'Success! You are logged in.' });
       // res.redirect(req.session.returnTo || '/');
       // console.log('here---CC');
-      return res.send({ customCode: 2001, status: 'Success', msg: 'Success! You are logged in.' })
+      return res.send({ _id: user._id, customCode: 2001, status: 'Success', msg: 'Success! You are logged in.' })
     });
   })(req, res, next);
 };

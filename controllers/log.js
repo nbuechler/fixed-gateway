@@ -15,7 +15,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var log = new Log(req.body);
-	log.user = req.user;
+	log.user = req.body.user;
 
 	// TODO: Use a utility function or express something or other to make this
 	// part of the array building modular
@@ -50,7 +50,7 @@ exports.create = function(req, res) {
 		log.etherArrayLength = 0;
 	}
 
-	log.save(function(err) { //TODO: This is not working right
+	log.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)

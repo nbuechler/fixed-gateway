@@ -17,12 +17,12 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var experience = new Experience(req.body);
-	experience.user = req.user;
+	experience.user = req.body.user;
 
 	experience.descriptionArray = experience.description.split(' ');
 	experience.descriptionArrayLength = experience.descriptionArray.length;
 
-	experience.save(function(err) { //TODO: This is not working right
+	experience.save(function(err) {
 		if (err) {
 			return res.status(400).send({
 				message: errorHandler.getErrorMessage(err)
