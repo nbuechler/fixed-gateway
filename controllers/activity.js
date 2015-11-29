@@ -17,8 +17,7 @@ var mongoose = require('mongoose'),
  */
 exports.create = function(req, res) {
 	var activity = new Activity(req.body);
-	console.log(req.body); //{ name: 'No user3', description: '3', privacy: '0' }
-	activity.user = req.user; // TODO: fix this: not picking up a user and it should be!
+	activity.user = req.body.user;
 
 	activity.descriptionArray = activity.description.split(' ');
 	activity.descriptionArrayLength = activity.descriptionArray.length;
