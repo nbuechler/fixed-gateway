@@ -134,7 +134,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
  * Interceptor routes.
  */
 
-app.get('/foo01', cors(), interceptorController.foo01); //'This is CORS-enabled for all origins!'
+app.get('/logsOverview', cors(), interceptorController.logsOverview); //'This is CORS-enabled for all origins!'
 app.get('/foo02', cors(), interceptorController.foo02); //'This is CORS-enabled for all origins!'
 
 /**
