@@ -34,3 +34,31 @@ exports.foo02 = function(req, res) {
  //    title: 'FOO 01'
  //  });
 };
+
+exports.experiencesOverview = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/experiences/overview/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
+exports.activitiesOverview = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/activities/overview/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
