@@ -31,7 +31,7 @@ exports.characterLengths = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/logs/character_lengths/", options, function(error, meta, body){
+  fetchUrl("http://localhost:5000/logs/character_lengths/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     res.send(body.toString());
   });
