@@ -135,7 +135,8 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
  */
 
 app.get('/logsOverview', cors(), interceptorController.logsOverview); //'This is CORS-enabled for all origins!'
-app.get('/foo02', cors(), interceptorController.foo02); //'This is CORS-enabled for all origins!'
+app.get('/characterLengths', cors(), interceptorController.characterLengths); //'This is CORS-enabled for all origins!'
+app.get('/wordLengths', cors(), interceptorController.wordLengths); //'This is CORS-enabled for all origins!'
 app.get('/experiencesOverview', cors(), interceptorController.experiencesOverview); //'This is CORS-enabled for all origins!'
 app.get('/activitiesOverview', cors(), interceptorController.activitiesOverview); //'This is CORS-enabled for all origins!'
 
