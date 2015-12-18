@@ -1,9 +1,14 @@
 /**
  * GET /
- * Interceptor foo01 page.
+ * Interceptor page.
  */
 
 var fetchUrl = require("fetch").fetchUrl;
+
+/**
+ * GET /
+ * Interceptor logs methods.
+ */
 
 exports.logsOverview = function(req, res) {
   var options = {
@@ -19,14 +24,14 @@ exports.logsOverview = function(req, res) {
   });
 };
 
-exports.foo02 = function(req, res) {
+exports.characterLengths = function(req, res) {
   var options = {
        headers:{
            "X-My-Header": "This is a custom header field"
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/altdummy", options, function(error, meta, body){
+  fetchUrl("http://localhost:5000/logs/character_lengths/", options, function(error, meta, body){
     console.log(body.toString());
     res.send(body.toString());
   });
@@ -34,6 +39,26 @@ exports.foo02 = function(req, res) {
  //    title: 'FOO 01'
  //  });
 };
+
+exports.wordLengths = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/logs/word_lengths/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
+
+/**
+ * GET /
+ * Interceptor experiences methods.
+ */
 
 exports.experiencesOverview = function(req, res) {
   var options = {
@@ -48,6 +73,11 @@ exports.experiencesOverview = function(req, res) {
     res.send(body.toString());
   });
 };
+
+/**
+ * GET /
+ * Interceptor activities methods.
+ */
 
 exports.activitiesOverview = function(req, res) {
   var options = {
