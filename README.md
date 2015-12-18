@@ -1,6 +1,8 @@
 # fixed-gateway
 a gateway for all the front-end apps
 
+interceptors are the key to acting as middleware between front ends and hungry-interceptor project
+
 
 ##For node 4.0+
 
