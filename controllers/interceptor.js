@@ -74,6 +74,20 @@ exports.experiencesOverview = function(req, res) {
   });
 };
 
+exports.experiencesStatistics = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/experiences/statistics/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
 /**
  * GET /
  * Interceptor activities methods.
@@ -87,6 +101,20 @@ exports.activitiesOverview = function(req, res) {
        method: 'GET'
    }
   fetchUrl("http://localhost:5000/activities/overview/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
+exports.activitiesStatistics = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/activities/statistics/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
