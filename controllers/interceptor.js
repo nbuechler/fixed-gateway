@@ -61,7 +61,7 @@ exports.logHasWord = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/has/word/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://localhost:5000/logs/has/word/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
