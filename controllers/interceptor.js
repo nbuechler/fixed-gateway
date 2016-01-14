@@ -68,6 +68,20 @@ exports.logHasWord = function(req, res) {
   });
 };
 
+exports.eventSummary = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/logs/event_summary/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
 
 /**
  * GET /
