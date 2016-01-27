@@ -130,6 +130,20 @@ exports.experienceHasWord = function(req, res) {
   });
 };
 
+exports.experienceContainsLog = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/experiences/contains/log/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
 /**
  * GET /
  * Interceptor activities methods.

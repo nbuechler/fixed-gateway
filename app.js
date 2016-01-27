@@ -142,6 +142,7 @@ app.get('/eventSummary', cors(), interceptorController.eventSummary); //'This is
 app.get('/experiencesOverview', cors(), interceptorController.experiencesOverview); //'This is CORS-enabled for all origins!'
 app.get('/experiencesStatistics', cors(), interceptorController.experiencesStatistics); //'This is CORS-enabled for all origins!'
 app.get('/experienceHasWord', cors(), interceptorController.experienceHasWord); //'This is CORS-enabled for all origins!'
+app.get('/experienceContainsLog', cors(), interceptorController.experienceContainsLog); //'This is CORS-enabled for all origins!'
 app.get('/activitiesOverview', cors(), interceptorController.activitiesOverview); //'This is CORS-enabled for all origins!'
 app.get('/activitiesStatistics', cors(), interceptorController.activitiesStatistics); //'This is CORS-enabled for all origins!'
 app.get('/activityHasWord', cors(), interceptorController.activityHasWord); //'This is CORS-enabled for all origins!'
