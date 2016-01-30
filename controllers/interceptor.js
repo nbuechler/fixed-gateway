@@ -204,3 +204,22 @@ exports.activityContainsExperience = function(req, res) {
     res.send(body.toString());
   });
 };
+
+/**
+ * GET /
+ * Interceptor activities methods.
+ */
+
+exports.userSpokeUniqueWord = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://localhost:5000/users/spoke/unique_word/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
