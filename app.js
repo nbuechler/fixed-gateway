@@ -148,6 +148,7 @@ app.get('/activitiesStatistics', cors(), interceptorController.activitiesStatist
 app.get('/activityHasWord', cors(), interceptorController.activityHasWord); //'This is CORS-enabled for all origins!'
 app.get('/activityContainsExperience', cors(), interceptorController.activityContainsExperience); //'This is CORS-enabled for all origins!'
 app.get('/userSpokeUniqueWord', cors(), interceptorController.userSpokeUniqueWord); //'This is CORS-enabled for all origins!'
+app.get('/userDidActivityWithLog', cors(), interceptorController.userDidActivityWithLog); //'This is CORS-enabled for all origins!'
 
 /**
  * Activity routes.
