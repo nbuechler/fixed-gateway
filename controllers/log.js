@@ -1,5 +1,7 @@
 'use strict';
 
+var fetchUrl = require("fetch").fetchUrl;
+
 /**
  * Module dependencies.
  */
@@ -57,6 +59,17 @@ exports.create = function(req, res) {
 			});
 		} else {
 			res.jsonp(log);
+
+			var options = {
+		       headers:{
+		           "X-My-Header": "This is a custom header field"
+		       },
+		       method: 'GET'
+		  }
+
+		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_create_single_log", options, function(error, meta, body){
+				console.log('here');
+		  });
 		}
 	});
 };
