@@ -60,6 +60,9 @@ exports.create = function(req, res) {
 		} else {
 			res.jsonp(log);
 
+			var logID = log._id
+			console.log(logID);
+
 			var options = {
 		       headers:{
 		           "X-My-Header": "This is a custom header field"
@@ -67,7 +70,7 @@ exports.create = function(req, res) {
 		       method: 'GET'
 		  }
 
-		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_create_single_log", options, function(error, meta, body){
+		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_create_single_log/" + logID, options, function(error, meta, body){
 				console.log('here');
 		  });
 		}
@@ -124,6 +127,20 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(log);
+
+			var logID = log._id
+			console.log(logID);
+
+			var options = {
+		       headers:{
+		           "X-My-Header": "This is a custom header field"
+		       },
+		       method: 'GET'
+		  }
+
+		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_update_single_log/" + logID, options, function(error, meta, body){
+				console.log('here');
+		  });
 		}
 	});
 };
@@ -141,6 +158,20 @@ exports.delete = function(req, res) {
 			});
 		} else {
 			res.jsonp(log);
+
+			var logID = log._id
+			console.log(logID);
+
+			var options = {
+		       headers:{
+		           "X-My-Header": "This is a custom header field"
+		       },
+		       method: 'GET'
+		  }
+
+		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_update_single_log/" + logID, options, function(error, meta, body){
+				console.log('here');
+		  });
 		}
 	});
 };
