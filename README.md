@@ -1,5 +1,5 @@
 # fixed-gateway
-a gateway for all the front-end apps
+a gateway for all the front-end apps - lives on same server
 
 interceptors are the key to acting as middleware between front ends and hungry-interceptor project
 
