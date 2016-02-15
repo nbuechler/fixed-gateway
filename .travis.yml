@@ -1,8 +1,29 @@
 language: node_js
 sudo: false
-
 services:
-  - mongodb
-
+- mongodb
 node_js:
-  - "stable"
+- stable
+deploy:
+- provider: s3
+  access_key_id: AKIAIEAMLPHO36E7S73Q
+  secret_access_key: &17178880
+    secure: TnIfUmWxSSR7bglT+3tx4wew9MJZj4c6Q8hScIZ1d51MI3K77Ewg96Ry7cuBmUWDXyCSqy0lkldB2fAMK+yiV1ipUigc0dVwxi4p+nfFuvXssd29jVw9fskvLv1T31PQ6eJ9EIM6i9Owra2XUnMVKcc5PgAO6dJQImR1qW5OOgsUqp/r3X8xtHzocDiV12ccI0Q71IOt6iTsFO0tXu3ZQwsLZZCNnRGG7d7ZSuSgHQEN7f7JIQZI6RAijoLp8COdy0YGBT/HkZjN/2todqosB9hqjJUTyGG6NQXE4dYJvqn9HZ+b02pqa+qTsdAoXAc1Hs6I7438quWNlLukHJmhjp4Pyde0fvW/0DN6tfTHaWMEUaMVGvV95XPe1W4ijNmeBfgbpvwTu3vL5ebhcyKvXJEqvXcZstUn1ckr4kmIXyXahbpPrcxmOvfz2luriXAshFK0ndOgAqVMgeW3le3Lgm1vLHN0QEVc+CQddVgtrjOx43kGT6zndWqoB2CzTbAq0eZGGCKyjQ4GylH3yxUc6klSqzrOEn2gytRdbWbIS2oL1jF6umjFOTj0dxhJM3eSxUpHUK1xDyLE0w9GTUDGymSUFgwfw+D11NWUnXBqGj4/gBfSkczZjnpB0bXbQIu0yWB3C+SUGr8D2et0wkR746Ap25BDhOvGrqv9zA6Cvmk=
+  local_dir: dpl_cd_upload
+  skip_cleanup: true
+  on: &16704160
+    repo: nbuechler/fixed-gateway
+    branch: develop
+  bucket: fixed-gateway-bucket
+- provider: codedeploy
+  access_key_id: AKIAIEAMLPHO36E7S73Q
+  secret_access_key: *17178880
+  bucket: fixed-gateway-bucket
+  key: latest-fd.zip
+  bundle_type: zip
+  application: fixed-gateway
+  deployment_group: logro-development-group
+  on: *16704160
+before_deploy:
+- mkdir -p dpl_cd_upload
+- mv latest-fd.zip dpl_cd_upload/latest-fd.zip
