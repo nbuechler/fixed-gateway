@@ -25,6 +25,6 @@ deploy:
   deployment_group: logro-development-group
   on: *16704160
 before_deploy:
-  - zip -r latest-fd *
+  - zip -r latest-fd * --exclude=./node_modules
   - mkdir -p dpl_cd_upload
   - mv latest-fd.zip dpl_cd_upload/latest-fd.zip
