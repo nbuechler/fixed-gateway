@@ -1,7 +1,8 @@
 which node
 which npm
+echo 'done whiches'
 npm -v
-echo 'here'
+echo 'here -- done version'
 pwd
 cd ..
 npm install -g
