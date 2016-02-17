@@ -1,3 +1,5 @@
+echo $PATH
+echo 'path happened'
 which node
 which npm
 echo 'done whiches'
