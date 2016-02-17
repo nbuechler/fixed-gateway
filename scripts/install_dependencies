@@ -1,4 +1,5 @@
-source /home/ec2-user/.bash_profile 
+which node
+which npm
 npm -v
 echo 'here'
 pwd
