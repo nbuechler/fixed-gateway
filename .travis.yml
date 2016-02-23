@@ -25,6 +25,6 @@ deploy:
   deployment_group: logro-development-group
   on: *16704160
 before_deploy:
-  - zip -r latest-fd config/* controllers/* models/* public/* scripts/* test/* views/* .gitignore .travis.yml app.js appspec.yml cluster_app.js LICENSE package.json README.md setup.js 
+  - zip -r latest-fd config/* controllers/* models/* public/* scripts/* test/* views/* .gitignore .travis.yml app.js appspec.yml cluster_app.js LICENSE package.json README.md setup.js
   - mkdir -p dpl_cd_upload
   - mv latest-fd.zip dpl_cd_upload/latest-fd.zip

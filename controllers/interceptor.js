@@ -10,6 +10,8 @@ var fetchUrl = require("fetch").fetchUrl;
  * Interceptor logs methods.
  */
 
+var interceptorAPI = 52.87.224.145;
+
 exports.logsOverview = function(req, res) {
   var options = {
        headers:{
@@ -17,7 +19,7 @@ exports.logsOverview = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/logs/overview/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/logs/overview/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -31,7 +33,7 @@ exports.characterLengths = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/logs/character_lengths/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/logs/character_lengths/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     res.send(body.toString());
   });
@@ -47,7 +49,7 @@ exports.wordLengths = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/logs/word_lengths/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/logs/word_lengths/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -61,7 +63,7 @@ exports.logHasWord = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/logs/has/word/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/logs/has/word/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -75,7 +77,7 @@ exports.eventSummary = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/logs/event_summary/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/logs/event_summary/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -95,7 +97,7 @@ exports.experiencesOverview = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/experiences/overview/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/experiences/overview/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -109,7 +111,7 @@ exports.experiencesStatistics = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/experiences/statistics/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/experiences/statistics/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -123,7 +125,7 @@ exports.experienceHasWord = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/experiences/has/word/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/experiences/has/word/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -137,7 +139,7 @@ exports.experienceContainsLog = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/experiences/contains/log/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/experiences/contains/log/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -156,7 +158,7 @@ exports.activitiesOverview = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/activities/overview/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/activities/overview/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -170,7 +172,7 @@ exports.activitiesStatistics = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/activities/statistics/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/activities/statistics/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -184,7 +186,7 @@ exports.activityHasWord = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/activities/has/word/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/activities/has/word/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -198,7 +200,7 @@ exports.activityContainsExperience = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/activities/contains/experience/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/activities/contains/experience/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -217,7 +219,7 @@ exports.userSpokeUniqueWord = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/users/spoke/unique_word/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/users/spoke/unique_word/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
@@ -231,7 +233,7 @@ exports.userDidActivityWithLog = function(req, res) {
        },
        method: 'GET'
    }
-  fetchUrl("http://localhost:5000/users/did/activity_with_log/" + req.query.credentials, options, function(error, meta, body){
+  fetchUrl("http://" + interceptorAPI + "/users/did/activity_with_log/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
