@@ -10,7 +10,12 @@ var fetchUrl = require("fetch").fetchUrl;
  * Interceptor logs methods.
  */
 
-var interceptorAPI = "52.87.224.145";
+var interceptorAPI = null;
+if(process.argv[2] == 'dev'){
+ interceptorAPI = '0.0.0.0';
+} else if(process.argv[2] == 'production') {
+ interceptorAPI = '52.87.224.145';
+}
 
 exports.logsOverview = function(req, res) {
   var options = {

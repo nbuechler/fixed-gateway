@@ -1,6 +1,6 @@
 run()
 {
-    nohup node ../cluster_app.js >logfile.txt 2>&1 </dev/null &
+    nohup node ../cluster_app.js dev >logfile.txt 2>&1 </dev/null &
     return 0
 }
 
