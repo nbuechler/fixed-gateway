@@ -12,7 +12,7 @@ var fetchUrl = require("fetch").fetchUrl;
 
 var interceptorAPI = null;
 if(process.argv[2] == 'dev'){
- interceptorAPI = '0.0.0.0';
+ interceptorAPI = '0.0.0.0:5000';
 } else if(process.argv[2] == 'production') {
  interceptorAPI = '52.87.224.145';
 }
