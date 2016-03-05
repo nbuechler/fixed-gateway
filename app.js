@@ -133,17 +133,23 @@ app.get('/logsOverview', cors(), interceptorController.logsOverview); //'This is
 app.get('/characterLengths', cors(), interceptorController.characterLengths); //'This is CORS-enabled for all origins!'
 app.get('/wordLengths', cors(), interceptorController.wordLengths); //'This is CORS-enabled for all origins!'
 app.get('/logHasWord', cors(), interceptorController.logHasWord); //'This is CORS-enabled for all origins!'
+
 app.get('/eventSummary', cors(), interceptorController.eventSummary); //'This is CORS-enabled for all origins!'
+
 app.get('/experiencesOverview', cors(), interceptorController.experiencesOverview); //'This is CORS-enabled for all origins!'
 app.get('/experiencesStatistics', cors(), interceptorController.experiencesStatistics); //'This is CORS-enabled for all origins!'
 app.get('/experienceHasWord', cors(), interceptorController.experienceHasWord); //'This is CORS-enabled for all origins!'
 app.get('/experienceContainsLog', cors(), interceptorController.experienceContainsLog); //'This is CORS-enabled for all origins!'
+
 app.get('/activitiesOverview', cors(), interceptorController.activitiesOverview); //'This is CORS-enabled for all origins!'
 app.get('/activitiesStatistics', cors(), interceptorController.activitiesStatistics); //'This is CORS-enabled for all origins!'
 app.get('/activityHasWord', cors(), interceptorController.activityHasWord); //'This is CORS-enabled for all origins!'
 app.get('/activityContainsExperience', cors(), interceptorController.activityContainsExperience); //'This is CORS-enabled for all origins!'
+
 app.get('/userSpokeUniqueWord', cors(), interceptorController.userSpokeUniqueWord); //'This is CORS-enabled for all origins!'
 app.get('/userDidActivityWithLog', cors(), interceptorController.userDidActivityWithLog); //'This is CORS-enabled for all origins!'
+
+app.get('/friendsOverview', cors(), interceptorController.friendsOverview); //'This is CORS-enabled for all origins!'
 
 /**
  * Activity routes.

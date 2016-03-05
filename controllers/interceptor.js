@@ -5,17 +5,17 @@
 
 var fetchUrl = require("fetch").fetchUrl;
 
-/**
- * GET /
- * Interceptor logs methods.
- */
-
 var interceptorAPI = null;
 if(process.argv[2] == 'dev'){
  interceptorAPI = '0.0.0.0:5000';
 } else if(process.argv[2] == 'production') {
  interceptorAPI = '52.87.224.145:80';
 }
+
+/**
+ * GET /
+ * Interceptor logs methods.
+ */
 
 exports.logsOverview = function(req, res) {
   var options = {
@@ -239,6 +239,25 @@ exports.userDidActivityWithLog = function(req, res) {
        method: 'GET'
    }
   fetchUrl("http://" + interceptorAPI + "/users/did/activity_with_log/" + req.query.credentials, options, function(error, meta, body){
+    console.log(body.toString());
+    console.log(req.query.credentials);
+    res.send(body.toString());
+  });
+};
+
+/**
+ * GET /
+ * Interceptor friend methods.
+ */
+
+exports.friendsOverview = function(req, res) {
+  var options = {
+       headers:{
+           "X-My-Header": "This is a custom header field"
+       },
+       method: 'GET'
+   }
+  fetchUrl("http://" + interceptorAPI + "/friends/overview/" + req.query.credentials, options, function(error, meta, body){
     console.log(body.toString());
     console.log(req.query.credentials);
     res.send(body.toString());
