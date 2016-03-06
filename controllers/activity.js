@@ -86,6 +86,23 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(activity);
+
+			var activityID = activity._id
+			console.log(activityID);
+
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_update_single_activity/" + activityID, {
+	      method: 'POST',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('here');
+		  })
 		}
 	});
 };

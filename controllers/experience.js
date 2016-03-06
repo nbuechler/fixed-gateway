@@ -39,6 +39,23 @@ exports.create = function(req, res) {
 			});
 		} else {
 			res.jsonp(experience);
+
+			var experienceID = experience._id
+			console.log(experienceID);
+
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_create_single_experience/" + experienceID, {
+	      method: 'POST',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('here');
+		  })
 		}
 	});
 };
@@ -68,6 +85,24 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(experience);
+
+			var experienceID = experience._id
+			console.log(experienceID);
+
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_update_single_experience/" + experienceID, {
+	      method: 'POST',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('here');
+		  })
+
 		}
 	});
 };
