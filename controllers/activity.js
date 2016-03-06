@@ -1,5 +1,7 @@
 'use strict';
 
+var fetchUrl = require("fetch").fetchUrl;
+
 /**
  * Module dependencies.
  */
@@ -11,6 +13,14 @@ var mongoose = require('mongoose'),
 	Experience = mongoose.model('Experience'),
 	errorHandler = require('./errors'),
 	_ = require('lodash');
+
+
+var interceptorAPI = null;
+if(process.argv[2] == 'dev'){
+ interceptorAPI = '0.0.0.0:5000';
+} else if(process.argv[2] == 'production') {
+ interceptorAPI = '52.87.224.145:80';
+}
 
 /**
  * Create a Activity
@@ -29,6 +39,24 @@ exports.create = function(req, res) {
 			});
 		} else {
 			res.jsonp(activity);
+
+			var activityID = activity._id
+			console.log(activityID);
+
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_create_single_activity/" + activityID, {
+	      method: 'POST',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('here');
+		  })
+
 		}
 	});
 };
