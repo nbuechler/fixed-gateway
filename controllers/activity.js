@@ -54,7 +54,7 @@ exports.create = function(req, res) {
 	        pass: 'bar'
 	      })
 	    }, function(error, meta, body){
-				console.log('here');
+				console.log('created');
 		  })
 
 		}
@@ -86,6 +86,23 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(activity);
+
+			var activityID = activity._id
+			console.log(activityID);
+
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_update_single_activity/" + activityID, {
+	      method: 'PUT',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('updated');
+		  })
 		}
 	});
 };
@@ -103,6 +120,23 @@ exports.delete = function(req, res) {
 			});
 		} else {
 			res.jsonp(activity);
+
+			var activityID = activity._id
+			console.log(activityID);
+
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_destroy_single_activity/" + activityID, {
+	      method: 'DELETE',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('deleted');
+		  })
 		}
 	});
 };

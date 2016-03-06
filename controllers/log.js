@@ -12,7 +12,7 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
 	_ = require('lodash');
 
-	
+
 var interceptorAPI = null;
 if(process.argv[2] == 'dev'){
  interceptorAPI = '0.0.0.0:5000';
@@ -71,16 +71,20 @@ exports.create = function(req, res) {
 			var logID = log._id
 			console.log(logID);
 
-			var options = {
-		       headers:{
-		           "X-My-Header": "This is a custom header field"
-		       },
-		       method: 'GET'
-		  }
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_create_single_log/" + logID, {
+	      method: 'POST',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('created');
+		  })
 
-		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_create_single_log/" + logID, options, function(error, meta, body){
-				console.log('here');
-		  });
 		}
 	});
 };
@@ -139,16 +143,20 @@ exports.update = function(req, res) {
 			var logID = log._id
 			console.log(logID);
 
-			var options = {
-		       headers:{
-		           "X-My-Header": "This is a custom header field"
-		       },
-		       method: 'GET'
-		  }
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_update_single_log/" + logID, {
+	      method: 'PUT',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('updated');
+		  })
 
-		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_update_single_log/" + logID, options, function(error, meta, body){
-				console.log('here');
-		  });
 		}
 	});
 };
@@ -170,16 +178,20 @@ exports.delete = function(req, res) {
 			var logID = log._id
 			console.log(logID);
 
-			var options = {
-		       headers:{
-		           "X-My-Header": "This is a custom header field"
-		       },
-		       method: 'GET'
-		  }
+			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_destroy_single_log/" + logID, {
+	      method: 'DELETE',
+	      headers: {
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json'
+	      },
+	      body: JSON.stringify({
+	        email: 'foo',
+	        pass: 'bar'
+	      })
+	    }, function(error, meta, body){
+				console.log('deleted');
+		  })
 
-		  fetchUrl("http://localhost:5000/intercepts/mongo2neo/intercepts_update_single_log/" + logID, options, function(error, meta, body){
-				console.log('here');
-		  });
 		}
 	});
 };
