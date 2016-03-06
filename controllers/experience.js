@@ -90,7 +90,7 @@ exports.update = function(req, res) {
 			console.log(experienceID);
 
 			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_update_single_experience/" + experienceID, {
-	      method: 'POST',
+	      method: 'PUT',
 	      headers: {
 	        'Accept': 'application/json',
 	        'Content-Type': 'application/json'

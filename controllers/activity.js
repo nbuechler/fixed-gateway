@@ -91,7 +91,7 @@ exports.update = function(req, res) {
 			console.log(activityID);
 
 			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_update_single_activity/" + activityID, {
-	      method: 'POST',
+	      method: 'PUT',
 	      headers: {
 	        'Accept': 'application/json',
 	        'Content-Type': 'application/json'
