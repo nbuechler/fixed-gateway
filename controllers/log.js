@@ -12,6 +12,14 @@ var mongoose = require('mongoose'),
 	errorHandler = require('./errors'),
 	_ = require('lodash');
 
+	
+var interceptorAPI = null;
+if(process.argv[2] == 'dev'){
+ interceptorAPI = '0.0.0.0:5000';
+} else if(process.argv[2] == 'production') {
+ interceptorAPI = '52.87.224.145:80';
+}
+
 /**
  * Create a Log
  */
