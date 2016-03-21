@@ -113,33 +113,38 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
 	var experience = req.experience ;
 
-	experience.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(experience);
+	/*
+	 * It makes more sense to archive and hide, then remove from the system.
+	 */
 
-			var experienceID = experience._id
-			console.log(experienceID);
+	// experience.remove(function(err) {
+	// 	if (err) {
+	// 		return res.status(400).send({
+	// 			message: errorHandler.getErrorMessage(err)
+	// 		});
+	// 	} else {
+	// 		res.jsonp(experience);
+	//
+	// 		var experienceID = experience._id
+	// 		console.log(experienceID);
+	//
+	// 		fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_destroy_single_experience/" + experienceID, {
+	//       method: 'DELETE',
+	//       headers: {
+	//         'Accept': 'application/json',
+	//         'Content-Type': 'application/json'
+	//       },
+	//       body: JSON.stringify({
+	//         email: 'foo',
+	//         pass: 'bar'
+	//       })
+	//     }, function(error, meta, body){
+	// 			console.log('deleted');
+	// 	  })
+	//
+	// 	}
+	// });
 
-			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_destroy_single_experience/" + experienceID, {
-	      method: 'DELETE',
-	      headers: {
-	        'Accept': 'application/json',
-	        'Content-Type': 'application/json'
-	      },
-	      body: JSON.stringify({
-	        email: 'foo',
-	        pass: 'bar'
-	      })
-	    }, function(error, meta, body){
-				console.log('deleted');
-		  })
-
-		}
-	});
 };
 
 /**
