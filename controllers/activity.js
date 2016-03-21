@@ -113,32 +113,37 @@ exports.update = function(req, res) {
 exports.delete = function(req, res) {
 	var activity = req.activity ;
 
-	activity.remove(function(err) {
-		if (err) {
-			return res.status(400).send({
-				message: errorHandler.getErrorMessage(err)
-			});
-		} else {
-			res.jsonp(activity);
+	/*
+	 * It makes more sense to archive and hide, then remove from the system.
+	 */
 
-			var activityID = activity._id
-			console.log(activityID);
-
-			fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_destroy_single_activity/" + activityID, {
-	      method: 'DELETE',
-	      headers: {
-	        'Accept': 'application/json',
-	        'Content-Type': 'application/json'
-	      },
-	      body: JSON.stringify({
-	        email: 'foo',
-	        pass: 'bar'
-	      })
-	    }, function(error, meta, body){
-				console.log('deleted');
-		  })
-		}
-	});
+	// activity.remove(function(err) {
+	// 	if (err) {
+	// 		return res.status(400).send({
+	// 			message: errorHandler.getErrorMessage(err)
+	// 		});
+	// 	} else {
+	// 		res.jsonp(activity);
+	//
+	// 		var activityID = activity._id
+	// 		console.log(activityID);
+	//
+	// 		fetchUrl("http://" + interceptorAPI + "/intercepts/mongo2neo/intercepts_destroy_single_activity/" + activityID, {
+	//       method: 'DELETE',
+	//       headers: {
+	//         'Accept': 'application/json',
+	//         'Content-Type': 'application/json'
+	//       },
+	//       body: JSON.stringify({
+	//         email: 'foo',
+	//         pass: 'bar'
+	//       })
+	//     }, function(error, meta, body){
+	// 			console.log('deleted');
+	// 	  })
+	// 	}
+	// });
+	
 };
 
 /**
