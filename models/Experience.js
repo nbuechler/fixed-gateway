@@ -60,6 +60,10 @@ var ExperienceSchema = new Schema({
 		type: Number,
 		default: 0
 	},
+	archived: {
+		type: Number,
+		default: 0
+	},
 	seconds: { //Lenght of time the experience happened
 		type: Number,
 		default: 0

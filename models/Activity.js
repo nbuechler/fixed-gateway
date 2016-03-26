@@ -47,6 +47,10 @@ var ActivitySchema = new Schema({
 		type: Number,
 		default: 0
 	},
+	archived: {
+		type: Number,
+		default: 0
+	},
 	experiencesList: {
 		type: Array,
 		default: []
