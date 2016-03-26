@@ -113,6 +113,10 @@ var LogSchema = new Schema({
 		type: Number,
 		default: 0
 	},
+	archived: {
+		type: Number,
+		default: 0
+	},
 	firstExperience: {
 		type: Schema.ObjectId,
 		ref: 'Experience'
