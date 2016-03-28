@@ -193,7 +193,7 @@ exports.listByLogedInUser = function(req, res) {
  * Experience middleware
  */
 exports.experienceByID = function(req, res, next, id) {
-	Experience.findById(id).populate('user', 'displayName').populate('firstActivity').exec(function(err, experience) {
+	Experience.findById(id).populate('user', 'displayName').populate('firstActivity').populate('secondActivity').exec(function(err, experience) {
 		if (err) return next(err);
 		if (! experience) return next(new Error('Failed to load Experience ' + id));
 		req.experience = experience ;
@@ -265,6 +265,45 @@ exports.experienceByID = function(req, res, next, id) {
 									}
 							}
 					  }
+
+						/**
+ 					  * Handle the experience secondActivity
+ 						*/
+
+ 					 if(experience.secondActivity){
+ 				 			/**
+ 				 			 * Does the user id of the activity of the experience match the current user?
+ 				 			 * If it does, then nothing happens, but if it doesn't then the secondActivity
+ 				 			 * might be set to null so that people can't see it. Here's how:
+ 				 			 * If the secondActivity.privacy is less than 1, then the it is private.
+ 				 			 */
+
+ 							var doesActivityUserMatch = false;
+ 							if(req.assert('user_id')){
+ 					 			doesActivityUserMatch = experience.secondActivity.user.toString() === req.assert('user_id').value;
+ 					 				if(experience.secondActivity.privacy < 1 && !doesActivityUserMatch) {
+ 					 						req.experience.secondActivity = null;
+ 					 				} else {
+ 											/**
+ 											 * Get only the public experiences.
+ 											 */
+ 											var experiences = experience.secondActivity.experiencesList;
+ 											var experiencesList= [];
+ 											for (var j = 0; j < experiences.length; j++) {
+ 												if(experiences[j].privacy > 0){
+ 													experiencesList.push(experiences[j]);
+ 												} else if (experiences[j].user._id.toString() === req.assert('user_id').value) {
+ 													experiencesList.push(experiences[j]);
+ 												}
+ 												// else {
+ 												// 	//That experience was private - :D
+ 												// }
+ 											}
+
+ 											experience.secondActivity.experiencesList = experiencesList;
+ 									}
+ 							}
+ 					  }
 
 		 		}
 
