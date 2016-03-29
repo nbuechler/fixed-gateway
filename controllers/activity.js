@@ -143,7 +143,7 @@ exports.delete = function(req, res) {
 	// 	  })
 	// 	}
 	// });
-	
+
 };
 
 /**
@@ -204,7 +204,7 @@ exports.activityByID = function(req, res, next, id) {
 		/**
 		 * List of Experience by activity
 		 */
-		Experience.find({'firstActivity': id}).sort('-created').populate('user', 'displayName').exec(function(err, experiences) {
+		Experience.find().or([{'firstActivity': id},{'secondActivity': id}]).sort('-created').populate('user', 'displayName').exec(function(err, experiences) {
 			if (err) {
 				return res.status(400).send({
 					message: errorHandler.getErrorMessage(err)
