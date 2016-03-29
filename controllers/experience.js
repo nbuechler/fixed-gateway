@@ -40,6 +40,16 @@ exports.create = function(req, res) {
 		} else {
 			res.jsonp(experience);
 
+			// TODO: The experience's experience.firstActivity query result
+			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
+			// where activity is the firstActivity id
+			// then, save it to the previousFirsActivity
+
+			// TODO: The experience's experience.secondActivity query result
+			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
+			// where activity is the secondActivity id
+			// then, save it to the previousFirsActivity
+
 			var experienceID = experience._id
 			console.log(experienceID);
 
@@ -85,6 +95,26 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(experience);
+
+			// TODO: First look at the previousFirstActivity, and remove that experience ObjectId
+			// from the activity. (You might be adding it right back there again!)
+			// But if the activity changed the next step relates the activity back
+			// to the experience.
+
+			// TODO: The experience's experience.firstActivity query result
+			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
+			// where activity is the firstActivity id
+			// then, save it to the previousFirsActivity
+
+			// TODO: First look at the previousSecondActivity, and remove that experience ObjectId
+			// from the activity. (You might be adding it right back there again!)
+			// But if the activity changed the next step relates the activity back
+			// to the experience.
+
+			// TODO: The experience's experience.secondActivity query result
+			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
+			// where activity is the secondActivity id
+			// then, save it to the previousFirsActivity
 
 			var experienceID = experience._id
 			console.log(experienceID);
