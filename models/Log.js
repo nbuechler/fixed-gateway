@@ -121,6 +121,10 @@ var LogSchema = new Schema({
 		type: Schema.ObjectId,
 		ref: 'Experience'
 	}
+	previousFirstExperience: {
+		type: Schema.ObjectId,
+		ref: 'Experience'
+	}
 });
 
 mongoose.model('Log', LogSchema);
