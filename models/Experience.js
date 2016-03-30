@@ -78,6 +78,16 @@ var ExperienceSchema = new Schema({
 		ref: 'Activity',
 		required: 'Please choose an activity'
 	},
+	previousFirstActivity: {
+		type: Schema.ObjectId,
+		ref: 'Activity',
+		required: 'Please choose an activity'
+	},
+	previousSecondActivity: {
+		type: Schema.ObjectId,
+		ref: 'Activity',
+		required: 'Please choose an activity'
+	},
 	logsList: {
 		type: Array,
 		default: []

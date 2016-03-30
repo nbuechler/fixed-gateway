@@ -120,6 +120,10 @@ var LogSchema = new Schema({
 	firstExperience: {
 		type: Schema.ObjectId,
 		ref: 'Experience'
+	},
+	previousFirstExperience: {
+		type: Schema.ObjectId,
+		ref: 'Experience'
 	}
 });
 

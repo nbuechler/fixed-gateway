@@ -9,6 +9,7 @@ require('../models/Log');
 
 var mongoose = require('mongoose'),
 	Log = mongoose.model('Log'),
+	Experience = mongoose.model('Experience'),
 	errorHandler = require('./errors'),
 	_ = require('lodash');
 
@@ -67,6 +68,11 @@ exports.create = function(req, res) {
 			});
 		} else {
 			res.jsonp(log);
+
+			// TODO: The log's log.firstExperience query result
+			// has the log ObjectId and it needs to ba added to experience.logsList,
+			// where experience is the firstExperience id
+			// then, save it to the previousFirstExperience
 
 			var logID = log._id
 			console.log(logID);
@@ -139,6 +145,16 @@ exports.update = function(req, res) {
 			});
 		} else {
 			res.jsonp(log);
+
+			// TODO: First look at the previousFirstExperience, and remove that log ObjectId
+			// from the experience. (You might be adding it right back there again!)
+			// But if the experience changed the next step relates the experience back
+			// to the log.
+
+			// TODO: The log's log.firstExperience query result
+			// has the log ObjectId and it needs to ba added to experience.logsList,
+			// where experience is the firstExperience id
+			// then, save it to the previousFirstExperience
 
 			var logID = log._id
 			console.log(logID);
