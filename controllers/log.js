@@ -67,13 +67,38 @@ exports.create = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+			/* The log's log.firstExperience query result
+			 * has the log ObjectId and it needs to ba added to experience.logsList,
+			 * where experience is the firstExperience id
+			 * then, save it to the previousFirstExperience
+			 */
+
+			Experience.findById(log.firstExperience).exec(function(err, fExp) {
+				fExp.logsList.push(log._id)
+				// fExp.save(function(err) {
+					// if (err) {
+					// 	return res.status(400).send({
+					// 		message: errorHandler.getErrorMessage(err)
+					// 	});
+					// } else {
+					//
+					// 	// Update the previousFirstExperience
+					// 	log.previousFirstExperience = log.firstExperience
+					// 	log.save(function(err) {
+					// 		if (err) {
+					// 			return res.status(400).send({
+					// 				message: errorHandler.getErrorMessage(err)
+					// 			});
+					// 		}
+					// 	})
+					// }
+
+				// });
+				console.log(fExp.logsList);
+				console.log('experience saved');
+			});
+
 			res.jsonp(log);
-
-			// TODO: The log's log.firstExperience query result
-			// has the log ObjectId and it needs to ba added to experience.logsList,
-			// where experience is the firstExperience id
-			// then, save it to the previousFirstExperience
-
 			var logID = log._id
 			console.log(logID);
 
@@ -106,7 +131,7 @@ exports.read = function(req, res) {
  * Update a Log
  */
 exports.update = function(req, res) {
-	var log = req.log ;
+	var log = req.log;
 
 	log = _.extend(log , req.body);
 
@@ -144,18 +169,75 @@ exports.update = function(req, res) {
 				message: errorHandler.getErrorMessage(err)
 			});
 		} else {
+
+
+			// /* First look at the previousFirstExperience, and remove that log ObjectId
+			//  * from the experience. (You might be adding it right back there again!)
+			//  * But if the experience changed the next step relates the experience back
+			//  * to the log.
+			//  */
+			//
+			// 	Experience.findById(log.previousFirstExperience).exec(function(err, pExp) {
+			// 	console.log('pExp');
+			// 	console.log(pExp);
+			//
+			// 		var index = experience.logsList(log._id);
+			// 		if (index > -1) {
+			// 				pExp.logsList.splice(index, 1);
+			// 		}
+			//
+			// 		pExp.save(function(err) {
+			// 			if (err) {
+			// 				return res.status(400).send({
+			// 					message: errorHandler.getErrorMessage(err)
+			// 				});
+			// 			} else {
+			//
+			// 				/* The log's log.firstExperience query result
+			// 				 * has the log ObjectId and it needs to ba added to experience.logsList,
+			// 				 * where experience is the firstExperience id
+			// 				 * then, save it to the previousFirstExperience
+			// 				 */
+			//
+			// 				Experience.findById(log.firstExperience).exec(function(err, fExp) {
+			// 					fExp.logsList.push(log._id)
+			// 					fExp.save(function(err) {
+			// 						if (err) {
+			// 							return res.status(400).send({
+			// 								message: errorHandler.getErrorMessage(err)
+			// 							});
+			// 						} else {
+			//
+			// 							// Update the previousFirstExperience
+			// 							log.previousFirstExperience = log.firstExperience
+			// 							log.save(function(err) {
+			// 								if (err) {
+			// 									return res.status(400).send({
+			// 										message: errorHandler.getErrorMessage(err)
+			// 									});
+			// 								}
+			// 							})
+			// 						}
+			//
+			// 					});
+			// 					console.log(fExp.logsList);
+			// 					console.log('experience saved');
+			// 				});
+			//
+			// 			}
+			//
+			// 		});
+			//
+			// 	}
+
+
+
+
+			console.log('log._id');
+			console.log(log._id);
+			console.log('==========');
+
 			res.jsonp(log);
-
-			// TODO: First look at the previousFirstExperience, and remove that log ObjectId
-			// from the experience. (You might be adding it right back there again!)
-			// But if the experience changed the next step relates the experience back
-			// to the log.
-
-			// TODO: The log's log.firstExperience query result
-			// has the log ObjectId and it needs to ba added to experience.logsList,
-			// where experience is the firstExperience id
-			// then, save it to the previousFirstExperience
-
 			var logID = log._id
 			console.log(logID);
 
