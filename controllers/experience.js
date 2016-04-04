@@ -43,12 +43,12 @@ exports.create = function(req, res) {
 			// TODO: The experience's experience.firstActivity query result
 			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
 			// where activity is the firstActivity id
-			// then, save it to the previousFirsActivity
+			// then, save it to the previousFirstActivity
 
 			// TODO: The experience's experience.secondActivity query result
 			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
 			// where activity is the secondActivity id
-			// then, save it to the previousFirsActivity
+			// then, save it to the previousFirstActivity
 
 			var experienceID = experience._id
 			console.log(experienceID);
@@ -104,7 +104,7 @@ exports.update = function(req, res) {
 			// TODO: The experience's experience.firstActivity query result
 			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
 			// where activity is the firstActivity id
-			// then, save it to the previousFirsActivity
+			// then, save it to the previousFirstActivity
 
 			// TODO: First look at the previousSecondActivity, and remove that experience ObjectId
 			// from the activity. (You might be adding it right back there again!)
@@ -114,7 +114,7 @@ exports.update = function(req, res) {
 			// TODO: The experience's experience.secondActivity query result
 			// has the experience ObjectId and it needs to ba added to activity.experiencesList,
 			// where activity is the secondActivity id
-			// then, save it to the previousFirsActivity
+			// then, save it to the previousFirstActivity
 
 			var experienceID = experience._id
 			console.log(experienceID);
