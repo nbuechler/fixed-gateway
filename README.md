@@ -19,7 +19,17 @@ https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-14_binding.nod
 https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-46_binding.node
 ^^ This one is for node 4.0.0
 
+##After installing packages
 
+from this directory:
+```
+/fixed-gateway/scripts
+```
+
+run this command to start a cluster of node servers:
+```
+$ node ../cluster_app.js
+```
 
 ##Based upon the Hackathon Starter project
 
@@ -44,4 +54,3 @@ fixed-gateway License
 -------
 
 GPLv3
-
