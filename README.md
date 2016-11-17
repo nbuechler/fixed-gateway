@@ -1,44 +1,43 @@
 # fixed-gateway
-a gateway for all the front-end apps - lives on same server!
+With the idea of bridging the front-end and back-end apps of _Logro_, this project aims to provide interfaces so that every app is modular. It works in tandem with the project called 'hungry-interceptor' which provides similar functionality, but only for back-end apps.
 
-interceptors are the key to acting as middleware between front ends and hungry-interceptor project
+# History
+The controllers directory, written with express.js, includes code from two main areas:
+1. 'activity.js', 'experience.js', and 'log.js' are the main centers of business logic which originated in the project called 'evgroio' - these methods were refactored to work with this application
+2. Interceptors are the key to acting as middleware between front-end apps and the 'hungry-interceptor' project interfaces that provide statistical and processed information of logs/experiences/activities
 
+The file 'app.js' which is at the root of the project was originated from the hackathon-starter project: https://github.com/sahat/hackathon-starter
 
-##For node 4.0+
+# Future goals
+* Keep authentication/authorization logic in this project, and separate business logic into a new project
+* Then, in this project, use JWT tokens.
+* The main goal is to break this microservice into smaller component service parts
+* Should this go well, it is prudent to consider dockerizing the auth project
 
-#I had to create the directory for the node-sass binding
-
+# Deploy instructions, for node 4.0+ running on AWS
+I had to create the directory for the node-sass binding
 1. fixed-gateway/node_modules/node-sass-middleware/node_modules/node-sass/vendor
 2. Add this file, this one is for node 4.0.0.... https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-46_binding.node
 
-#See these references:
-https://github.com/sass/node-sass/issues/1162
+For more references see these links:
+* General issue page: https://github.com/sass/node-sass/issues/1162
+* This one is for node 0.12: https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-14_binding.node
+* This one is for node 4.0.0: https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-46_binding.node
 
-https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-14_binding.node
-^^ This one is for node 0.12
-https://github.com/sass/node-sass-binaries/blob/master/darwin-x64-46_binding.node
-^^ This one is for node 4.0.0
+# After installing packages
 
-##After installing packages
-
-from this directory:
+From the root directory:
 ```
-/fixed-gateway/scripts
+cd fixed-gateway/scripts
 ```
 
-run this command to start a cluster of node servers:
+Run this command to start a cluster of node servers:
 ```
 $ node ../cluster_app.js
 ```
 
-##Based upon the Hackathon Starter project
-
-```
-https://github.com/sahat/hackathon-starter
-```
-
-Hackathon License
--------
+# Credits
+Hackathon Starter can be found here: https://github.com/sahat/hackathon-starter
 
 The MIT License (MIT)
 
@@ -50,7 +49,6 @@ The above copyright notice and this permission notice shall be included in all c
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-fixed-gateway License
--------
-
+# License
+fixed-gateway is licensed as follows:
 GPLv3
