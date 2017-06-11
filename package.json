@@ -24,7 +24,6 @@
     "errorhandler": "^1.4.2",
     "express": "^4.13.3",
     "express-flash": "^0.0.2",
-    "express-jwt": "^5.3.0",
     "express-session": "^1.11.3",
     "express-validator": "^2.17.1",
     "fbgraph": "^1.1.0",
