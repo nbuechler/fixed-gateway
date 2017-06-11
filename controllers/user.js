@@ -4,7 +4,7 @@ var crypto = require('crypto');
 var passport = require('passport');
 var User = require('../models/User');
 var secrets = require('../config/secrets');
-
+var jwt = require('jsonwebtoken')
 
 /**
  * Require login routing middleware
@@ -157,6 +157,8 @@ console.log(req.assert('email').value);
       req.logIn(user, function(err) {
         if (err) return next(err);
 				// TODO: Return JWT TOKEN!
+				var jwtToken = jwt.sign({ _id: user._id}, 'Change this to your secret via the config file!')
+				console.log(jwtToken, 'This should print a JWT token');
         return res.send({ _id: user._id, customCode: 2001, status: 'Success', msg: 'Success! You have a new account, and you logged in.' })
       });
     });
