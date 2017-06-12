@@ -198,6 +198,8 @@ exports.postRemoteLogin = function(req, res, next) {
       // res.redirect(req.session.returnTo || '/');
       // console.log('here---CC');
 			// TODO: Return JWT TOKEN!
+			var jwtToken = jwt.sign({ _id: user._id}, 'Change this to your secret via the config file!')
+			console.log(jwtToken, 'This should print a JWT token');
       return res.send({ _id: user._id, customCode: 2001, status: 'Success', msg: 'Success! You are logged in.' })
     });
   })(req, res, next);
