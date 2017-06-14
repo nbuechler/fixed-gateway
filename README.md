@@ -5,13 +5,11 @@ With the idea of bridging the front-end and back-end apps of _Logro_, this proje
 The controllers directory, written with express.js, includes code from two main areas:
 1. 'activity.js', 'experience.js', and 'log.js' are the main centers of business logic which originated in the project called 'evgroio' - these methods were refactored to work with this application
 2. Interceptors are the key to acting as middleware between front-end apps and the 'hungry-interceptor' project interfaces that provide statistical and processed information of logs/experiences/activities
+3. Kept authentication/authorization logic in this project, and separate business logic into a new project(s)
+4. Then, in this project, JWT tokens are used to store information for other projects to use.
+5. The main goal is to break this microservice into smaller component service parts
 
-The file 'app.js' which is at the root of the project was originated from the hackathon-starter project: https://github.com/sahat/hackathon-starter
-
-# Future goals
-* Keep authentication/authorization logic in this project, and separate business logic into a new project
-* Then, in this project, use JWT tokens.
-* The main goal is to break this microservice into smaller component service parts
+# Future Goals
 * Should this go well, it is prudent to consider dockerizing the auth project
 
 # Deploy instructions, for node 4.0+ running on AWS
